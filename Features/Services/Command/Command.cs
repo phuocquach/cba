@@ -9,10 +9,10 @@ namespace CBA
         Task Process(int accountId);
     }
 
-    public class DepositCommand : ICommand
+    public class Command : ICommand
     {
         private readonly IBankingServices _bankingServices;
-        public DepositCommand(IBankingServices bankingServices)
+        public Command(IBankingServices bankingServices)
         {
             _bankingServices = bankingServices;
         }
@@ -31,7 +31,7 @@ namespace CBA
 
             } while (true);
 
-            _bankingServices.Deposit(accountId, depositNumber);
+            await _bankingServices.Deposit(accountId, depositNumber);
 
             Console.WriteLine($"Your new balance is: {_bankingServices.GetAccount(accountId).Balance}");
         }
@@ -58,7 +58,7 @@ namespace CBA
 
             } while(true) ;
 
-            _bankingServices.Withdraw(accountId, depositNumber);
+            await _bankingServices.Withdraw(accountId, depositNumber);
 
             Console.WriteLine($"Your new balance is: {_bankingServices.GetAccount(accountId).Balance}");
         }
@@ -66,7 +66,7 @@ namespace CBA
 
     public class ExitCommand : ICommand
     {
-        public async Task Process(int AccountId)
+        public async Task Process(int accountId)
         {
             Console.WriteLine("Goodbye");
         }

@@ -1,5 +1,6 @@
 ﻿using CBA.Features.Entity;
 using CBA.Features.Mapper;
+using System.Threading.Tasks;
 
 namespace CBA.Features.Services
 {
@@ -13,7 +14,7 @@ namespace CBA.Features.Services
             _mapper = mapper;
         }
 
-        public void Deposit(int AccountId, double number)
+        public async Task Deposit(int AccountId, double number)
         {
             _bank.GetAccount(AccountId).Deposit(number);
         }
@@ -23,7 +24,7 @@ namespace CBA.Features.Services
             return _mapper.Map(_bank.GetAccount(AccountId));
         }
 
-        public void Withdraw(int AccountId, double number)
+        public async Task Withdraw(int AccountId, double number)
         {
             _bank.GetAccount(AccountId).Withdraw(number);
         }

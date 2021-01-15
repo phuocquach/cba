@@ -33,7 +33,7 @@ namespace CBA
             services.AddSingleton<IBankingServices, BankingServices>();
             services.AddSingleton<Bank>();
             services.AddSingleton<IMapper, Mapper>();
-            services.AddTransient<DepositCommand>();
+            services.AddTransient<Command>();
             services.AddTransient<ExitCommand>();
             services.AddTransient<WithdrawCommand>();
             _serviceProvider = services.BuildServiceProvider(true);
